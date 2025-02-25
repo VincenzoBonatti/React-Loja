@@ -13,15 +13,5 @@ export default function ListaUsuarios() {
     
 
 
-    if (data.length > 0) {
-        return(
-            {
-                data.map(user => (
-                  <h1>{user.name}</h1>
-                ))
-              }
-        )
-    } else {
-        return "Carregando..."
-    }
+    
 }
