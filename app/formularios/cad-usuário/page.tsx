@@ -7,7 +7,7 @@ export default function CadastroUsuario() {
 
     const [formData, setFormData] = useState({
         name: '',
-        email: 'lucas191220@gmail.com',
+        email: '',
         senha: '',
       })
 
@@ -15,19 +15,19 @@ export default function CadastroUsuario() {
         event.preventDefault()
 
         
-        const response = await fetch(`${process.env.api_url}/users`, {
+        const response = fetch(`${process.env.api_url}/users`, {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
                 "Content-Type": "Application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Request-Method": "POST",
-                'Access-Control-Request-Headers': 'Content-Type , Authorization'
+                "Origin": "*"
             },
+        }).then((data) =>{
+            console.log(data)
         })
 
-        const data = await response.json()
-        console.log(data)
+//        const data = await response.json()
+
     }
 
     const handleInputChange = (event) => {
