@@ -1,8 +1,9 @@
 'use client'
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import ListaUsuarios from "@/app/lista-usuarios/page";
 
-console.log()
+
 export default function CadastroUsuario() {
 
     const [formData, setFormData] = useState({
@@ -24,9 +25,9 @@ export default function CadastroUsuario() {
             },
         }).then((data) =>{
             console.log(data)
+            ListaUsuarios()
         })
 
-//        const data = await response.json()
 
     }
 
