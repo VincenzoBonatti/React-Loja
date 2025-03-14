@@ -31,7 +31,7 @@ export default function CadastroUsuario() {
 
     }
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
         console.log(formData)
         setFormData({
           ...formData,
