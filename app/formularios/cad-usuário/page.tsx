@@ -1,11 +1,11 @@
 'use client'
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import ListaUsuarios from "@/app/lista-usuarios/page";
+
 
 
 export default function CadastroUsuario() {
-
+    
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -16,7 +16,7 @@ export default function CadastroUsuario() {
         event.preventDefault()
 
         
-        const response = fetch(`${process.env.api_url}/users`, {
+        fetch(`${process.env.api_url}/users`, {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
@@ -24,15 +24,11 @@ export default function CadastroUsuario() {
                 "Origin": "*"
             },
         }).then((data) =>{
-            console.log(data)
-            ListaUsuarios()
+            console.log(data)  
         })
-
-
     }
 
     const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
-        console.log(formData)
         setFormData({
           ...formData,
           [event.target.name]: event.target.value,
@@ -54,7 +50,7 @@ export default function CadastroUsuario() {
                 </div>
                 <div>
                     <h2>Senha</h2>
-                    <input type="password" name="senha" value={formData.senha} id="" onChange={handleInputChange} className="text-black px-2 py-1 rounded-full"/>
+                    <input type="password" name="senha" value={formData.senha} onChange={handleInputChange} className="text-black px-2 py-1 rounded-full"/>
                 </div>
                 <Link href={'/market'} className="rounded-full border border-solid border-white/[1]  text-black bg-white font-bold ">Acessar Loja</Link>
                 <button type="submit" className="rounded-full border border-solid border-white/[1] px-4 py-2 text-black bg-white font-bold ">Cadastrar</button>

@@ -1,8 +1,15 @@
 'use client'
 import { useEffect, useState } from "react";
+import CadastroUsuario from "../formularios/cad-usuário/page";
+
+type Item = {
+    name: string,
+    email: string,
+    senha: string
+}
 
 export default function ListaUsuarios() {
-    const [usuarios, setUsuarios] = useState<any | null>
+    const [usuarios, setUsuarios] = useState<Array<Item>>([])
 
 
     useEffect(() => {
@@ -12,23 +19,25 @@ export default function ListaUsuarios() {
                 "Origin": "*"
             }
         }).then(async (data) => {
-            setUsuarios(await data.json())
+            let transformed = await data.json() as unknown as Array<Item> 
+            setUsuarios(transformed)
         })
-        console.log(usuarios)
     }, [])
 
     
         
 
     return( 
-        <div>
-            {usuarios && usuarios.map((user, i) =>{
-                
-                <li key={i}>
-                    {user.name}
-                </li>
+        <ul className="text-black">
+            {usuarios && usuarios?.map((user, i) =>{
+                return (
+                    <li key={i} className="my-5">
+                        <p>{user.name}</p>
+                        <p>{user.email}</p>
+                    </li>
+                )
                 
             })}
-        </div>)
+        </ul>)
 
 }
