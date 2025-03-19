@@ -5,10 +5,11 @@ import { FormEvent, useState } from "react";
 
 export default function CadastroProduto() {
 
+
   const [formData, setFormData] = useState({
     name: '',
-    estoque: 0,
-    preco: 0,
+    estoque: '',
+    preco: '',
   })
 
   async function cadastrar(event: FormEvent<HTMLFormElement>) {
@@ -16,7 +17,7 @@ export default function CadastroProduto() {
 
     
     formData.estoque = parseInt(formData.estoque)
-    parseFloat(formData.preco)
+    formData.preco = parseFloat(formData.preco)
     
     fetch(`${process.env.api_url}/products`, {
       method: 'POST',
@@ -42,18 +43,18 @@ export default function CadastroProduto() {
 
 
 return (
-  <div>
+  <div className="w-[30%] flex flex-col items-center">
     <h1 className="font-bold text-xl text-black">Cadastrar produto</h1>
-    <form onSubmit={cadastrar} className="bg-black p-5 flex flex-col items-start justify-center gap-5">
-      <div>
+    <form onSubmit={cadastrar} className="bg-black p-5 flex flex-col items-start justify-center gap-5 w-[100%]">
+      <div className="w-[100%]">
         <h2>Produto:</h2>
         <input type="text" name="name" value={formData.name} onChange={handleInputChange} className="text-black px-2 py-1 rounded-full w-[100%]" />
       </div>
-      <div>
+      <div className="w-[100%]">
         <h2>Quantidade em estoque:</h2>
         <input type="text" name="estoque" value={formData.estoque} onChange={handleInputChange} className="text-black px-2 py-1 rounded-full w-[100%]" />
       </div>
-      <div>
+      <div className="w-[100%]">
         <h2>Preço:</h2>
         <input type="text" name="preco" value={formData.preco} onChange={handleInputChange} className="text-black px-2 py-1 rounded-full w-[100%]" />
       </div>

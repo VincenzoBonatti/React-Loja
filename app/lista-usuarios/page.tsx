@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from "react";
-import CadastroUsuario from "../formularios/cad-usuário/page";
 
 type Item = {
     name: string,
